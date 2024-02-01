@@ -1,5 +1,5 @@
 use ggez::{ContextBuilder, event, GameResult};
-use ggez::conf::{WindowMode, WindowSetup};
+use ggez::conf::{FullscreenType, WindowMode, WindowSetup};
 
 use crate::game_state::GameState;
 
@@ -17,7 +17,7 @@ const SCREEN_SIZE: (f32, f32) = (
 fn main() -> GameResult {
     let (ctx, events_loop) = ContextBuilder::new("sand", "someone")
         .window_setup(WindowSetup::default().title("Sand!"))
-        .window_mode(WindowMode::default().dimensions(SCREEN_SIZE.0, SCREEN_SIZE.1)).build()?;
+        .window_mode(WindowMode::default().fullscreen_type(FullscreenType::Desktop)).build()?; // dimensions(SCREEN_SIZE.0, SCREEN_SIZE.1)).build()?;
 
 
     let state = GameState::new();

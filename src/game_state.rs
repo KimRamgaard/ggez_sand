@@ -45,12 +45,13 @@ impl event::EventHandler<GameError> for GameState {
 
         Ok(())
     }
+
     fn mouse_button_down_event(&mut self, _ctx: &mut Context, _button: MouseButton, _x: f32, _y: f32) -> Result<(), GameError> {
         // Define the size of the square
         let size = 50.0; // Size of the square
 
         // Create a new rectangle at the mouse position with the specified size
-        let new_rect = graphics::Rect::new(_x - (size/2.0), _y - (size/2.0), size, size); // Use `_x` and `_y` for position
+        let new_rect = graphics::Rect::new(_x - (size/2.0), _y - (size/2.0), size, size);
 
         // Add the new rectangle to the vector of rectangles
         self.rectangles.push(new_rect);
