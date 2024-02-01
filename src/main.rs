@@ -6,8 +6,8 @@ use crate::game_state::GameState;
 mod game_state;
 mod grid;
 
-const GRID_SIZE: (i16, i16) = (30, 20);
-const GRID_CELL_SIZE: (i16, i16) = (32, 32);
+const GRID_SIZE: (i16, i16) = (80, 80);
+const GRID_CELL_SIZE: (i16, i16) = (10, 10);
 const SCREEN_SIZE: (f32, f32) = (
     GRID_SIZE.0 as f32 * GRID_CELL_SIZE.0 as f32,
     GRID_SIZE.1 as f32 * GRID_CELL_SIZE.1 as f32,
