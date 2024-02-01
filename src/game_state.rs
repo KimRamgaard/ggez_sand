@@ -3,6 +3,8 @@ use ggez::event::MouseButton;
 use ggez::graphics::Canvas;
 use oorandom::Rand32;
 
+use crate::GRID_CELL_SIZE;
+
 pub struct GameState {
     /// Our RNG state
     pub rng: Rand32,
@@ -47,15 +49,16 @@ impl event::EventHandler<GameError> for GameState {
     }
 
     fn mouse_button_down_event(&mut self, _ctx: &mut Context, _button: MouseButton, _x: f32, _y: f32) -> Result<(), GameError> {
-        // Define the size of the square
-        let size = 50.0; // Size of the square
-
         // Create a new rectangle at the mouse position with the specified size
-        let new_rect = graphics::Rect::new(_x - (size/2.0), _y - (size/2.0), size, size);
 
-        // Add the new rectangle to the vector of rectangles
+        let x_pos = ((_x / GRID_CELL_SIZE.0).floor()) * GRID_CELL_SIZE.0;
+        let y_pos = ((_y / GRID_CELL_SIZE.1).floor()) * GRID_CELL_SIZE.1;
+
+        let new_rect = graphics::Rect::new(x_pos, y_pos, GRID_CELL_SIZE.0, GRID_CELL_SIZE.1);
+
         self.rectangles.push(new_rect);
 
+        println!("Mouse Button Down at x: {}, y: {}, x_pos: {}", _x, _y, x_pos);
         Ok(())
     }
 }
