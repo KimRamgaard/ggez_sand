@@ -60,8 +60,7 @@ impl event::EventHandler<GameError> for GameState {
         Ok(())
     }
 
-    fn mouse_button_down_event(&mut self, _ctx: &mut Context, _button: MouseButton, _x: f32, _y: f32) -> Result<(), GameError> {
-        // Create a new rectangle at the mouse position with the specified size
+    fn mouse_motion_event(&mut self, _ctx: &mut Context, _x: f32, _y: f32, _dx: f32, _dy: f32) -> Result<(), GameError> {// Create a new rectangle at the mouse position with the specified size
 
         let x_pos = ((_x / GRID_CELL_SIZE.0).floor()) * GRID_CELL_SIZE.0;
         let y_pos = ((_y / GRID_CELL_SIZE.1).floor()) * GRID_CELL_SIZE.1;
