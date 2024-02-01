@@ -6,11 +6,12 @@ use crate::game_state::GameState;
 mod game_state;
 mod grid;
 
-const GRID_SIZE: (i16, i16) = (80, 80);
+const DESIRED_FPS: u32 = 20;
+const GRID_SIZE: (f32, f32) = (80.0, 80.0);
 const GRID_CELL_SIZE: (f32, f32) = (10.0, 10.0);
 const SCREEN_SIZE: (f32, f32) = (
-    GRID_SIZE.0 as f32 * GRID_CELL_SIZE.0 as f32,
-    GRID_SIZE.1 as f32 * GRID_CELL_SIZE.1 as f32,
+    GRID_SIZE.0 * GRID_CELL_SIZE.0,
+    GRID_SIZE.1 * GRID_CELL_SIZE.1,
 );
 
 

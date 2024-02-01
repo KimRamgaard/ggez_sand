@@ -3,7 +3,7 @@ use ggez::event::MouseButton;
 use ggez::graphics::Canvas;
 use oorandom::Rand32;
 
-use crate::GRID_CELL_SIZE;
+use crate::{DESIRED_FPS, GRID_CELL_SIZE};
 
 pub struct GameState {
     /// Our RNG state
@@ -25,6 +25,17 @@ impl GameState {
 
 impl event::EventHandler<GameError> for GameState {
     fn update(&mut self, _ctx: &mut Context) -> Result<(), GameError> {
+        while _ctx.time.check_update_time(DESIRED_FPS) {
+            let mut updated_rectangles = Vec::new();
+
+            for rect in &self.rectangles {
+                let new_y = rect.y + GRID_CELL_SIZE.1; // Move down by 1 unit
+                let updated_rect = graphics::Rect::new(rect.x, new_y, rect.w, rect.h);
+                updated_rectangles.push(updated_rect);
+            }
+
+            self.rectangles = updated_rectangles;
+        }
         Ok(())
     }
 
@@ -42,8 +53,9 @@ impl event::EventHandler<GameError> for GameState {
                 ))); // Example color: blue
         }
 
-
         canvas.finish(_ctx)?;
+
+        ggez::timer::yield_now();
 
         Ok(())
     }
